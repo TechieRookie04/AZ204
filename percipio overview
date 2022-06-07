@@ -1,0 +1,159 @@
+Percipio course:
+
+Implementing Iaas solutions:
+
+Compute on Microsoft Azure:
+Direct access to the operating access. 
+Azure dedicated host
+Azure cloud services.
+Container deployments.FQDN and azure files storage.
+Azure kubernates services.
+ 
+
+Provisioning and managing vms using azure portal:
+Networking section, how server reacts with outside world. 
+
+ARM templates:
+
+Creating and deploying ARM templates.
+
+Generate arm template through portal:
+
+
+Docker images and containers:
+
+
+Creating container images:
+Azure cloud shell, commands:
+az group create –name AZ204ACRG –location eastus 
+Create container registry
+Az acr create –resource-group <name> –name <username> –sku Basic
+Create a folder
+New-Item AZ204Images -ItemType Directory
+Cd AZ204Images
+New-Item Dockerfile -ItemType File
+Modify the file:
+Code DockerFile
+Docker file is empty so add below:
+From centos:latest
+Run yum -y install httpd
+cmd[“usr/sbin/httpd”,”-D”,”FOREGROUND”]
+Expose 80
+Close the editor
+Az acr build –image az204/sswebapp:v1 –registry ssaz204acr –file DockerFile
+
+Use azure portal to view the image.
+
+Azure container registry and instances:
+ACR Integrations:
+
+Azure container Instances.
+No hardware to maintain
+Azure kubernetes services, 
+
+Pushing an image to the container registry:
+Create registry: create a resource-> container registry-> create-> 
+
+
+Repo:
+Same name with collection of text, 
+Content trust, 
+
+Running container in azure container instances:
+
+
+Course summary:
+Implementing Iaas solutions on azure platform, creation of vms and docker implementations. 
+
+Developing solutions for Microsoft Azure: App service web APPs
+Overview:
+Azure app service, is a paas, fully hosted and managed env for web applications, web apps for containers and mobile app for containers and apis. Has automated scaling and load balancing, vertically and horizontally . scaling can be deployed in the same zone and diff. Supports .net, java,php, .net core, node js, python, ruby.visual studio and Vs code has plugins available. 
+Deployments: automate deployments through code commits and other commands via github and bitbucket like version controlling systems.
+ACR can be used to store container images deployed through app services.
+Content management services.
+Azure marketplace, 
+
+Deploying Azure app services:
+Login to azure portal-> create a resource->search for web app->review+create by checking the below information:
+Check resource group, like for example- az204
+Give a name
+Deploy code at runtime tasks or docker containers.
+Give additional information on the fields like OS, region, sku and size.
+Go to resource after deployment is done, see FTP hostname, FTPS hostname and copy the links someplace safe.
+Note:- App services are not automatically backed up. 
+Click on app service plan
+Using breadcrumb, click on the link before going back to the page.
+There's a whole section on development tools to check and explore. 
+
+Setting up a staging site:
+When you deploy an Azure App service, it also deploys Azure App plan
+Plan defines limits on the app service such as how many Azure compute units and how much RAM is needed.
+We’ll expand an existing app service plan to increase the slot
+Login to portal-> search for any app service->click on the current app plan->scroll down the bar and click on deployment slots->Add slot
+Here add a name like staging, app service plan has number of tiers assigned to it. 
+Clone settings from the current web app. And click on Add
+Can divide the traffic using the slots as per % to balance load traffic.
+
+Swap the navigation of deployment slots.and click on Swap.
+
+
+Enabling diagnostic logging:
+Azure provides various diagnostics and debugging applications, renown Azure App services, including built in-app service and integrated functions with Azure monitoring.
+Login to portal->search for app services->pick the existing app service->scroll down various services and under monitoring services, check for App service logs
+Flip the radio button of Application Logging to on.click on dropdown and select the type of logging(Error, Warning, Information, Verbose).
+ Detailed error messages can be turned on. Failed request tracking can also be turned on. 
+When the application Logging is turned on, live stream can be viewed through the Azure portal. 
+Click on the log stream to view the changes.
+Another method is log analytics. 
+
+Deploying code to Web App:
+Ex-: push .net application through a visual studio.
+Can be done through major IDEs, FTP or git based repo.
+In this demo, we’ll push from the .net application.
+We need to create a basic web app. Open vs code, file->new->create a new project.
+Provide project details and create.
+Expand the solution explorer in the right corner and pin it to the window. Right click on the name of the web application in solution explorer. In context menu->debug -> start a new instance.
+Check if the app is running.
+Then right click on the web application and select publish. 
+Select Azure-> select more specific options like Azure app service(windows)->select resource group, azure app service, staging deployment slot especially for production that was created in previous video.
+Finally, click on publish. 
+
+Configuring webapps:
+Login to portal-> search for actual app services->open an example app service->There’s settings column, configuration->in application settings, scroll right and edit an option->click deployment slot settings. 
+Scroll back and see advanced settings on top of the page, JSON file can be found.
+
+
+Autoscaling for web apps:
+Login to portal-> search for monitor->under settings click autoscale.
+Check autoscale status on right.pick on one that is not configured. 
+Manually set the instance count to 3. 
+Go back and pick up a different service plan and check custom autoscale. 
+Define some parameters to autoscale. 
+Click on add rule:
+First setting is the metric source. Scroll through the bottom, 
+
+Backing up and restoring App services:
+Login to portal->aa services-> open a sample app service-> under settings, click backups->snapshot require premium app service plan, go ahead and change if not premium. Go ahead and apply the suitable plan->refresh page. They are self hosted. Take a snapshot every hour after every deployment->handle the storage account.
+Create a storage account in the backup section.
+
+
+Monitoring Metrics:
+Can be done through external connectors or through native applications.
+If the application exceeds quota, it will be stopped, users will receive 403 errors and after a while it resolves. 
+login->app service plan->sample->under app service plan->quotas
+
+Azure firewall with app service environments:
+Consumers deploy ASe under their own VNET. Inbound management traffic.
+AppServiceManagement service tag. Use a firewall for outbound traffic. 
+FQDN. 
+
+
+
+
+
+
+
+
+
+
+
